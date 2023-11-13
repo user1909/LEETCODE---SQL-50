@@ -1,0 +1,8 @@
+# Write your MySQL query statement below
+SELECT tweet_id
+FROM Tweets
+WHERE length(content)>15;
+
+Here we have used in-built function - length
+It is used to find the length of contents and then later compared if it is greater than 15.
+then those tweets are considered as valid tweets
