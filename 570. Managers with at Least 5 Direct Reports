@@ -1,0 +1,18 @@
+Solution 1 using JOINS
+
+SELECT e.name 
+FROM Employee e
+LEFT JOIN Employee n 
+on e.id = n.managerId
+WHERE n.id IS NOT NULL
+GROUP BY e.id
+HAVING count(e.name)>=5
+
+Solution 2 :Alternative solution using subquery
+
+SELECT name 
+FROM Employee
+WHERE id IN 
+(SELECT managerID 
+FROM employee
+GROUP BY managerId HAVING COUNT(*)>=5);
