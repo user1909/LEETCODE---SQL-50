@@ -1,0 +1,19 @@
+# Write your MySQL query statement below
+
+SELECT p.product_id  , 
+IFNULL(ROUND(SUM((p.price * u.Units))/SUM(u.units),2),0) AS 'average_price'
+FROM Prices p
+LEFT JOIN UnitsSold u
+ON p.product_id = u.product_id
+WHERE u.purchase_date BETWEEN p.start_date 
+AND p.end_date OR u.purchase_date is NULL
+GROUP BY p.product_id
+
+NOTE :
+-----
+WHERE u.purchase_date BETWEEN p.start_date AND p.end_dat as it ensures that we're only considering units sold during the
+time when the product had a valid price.
+
+The "OR" means we're also interested in cases where there is no corresponding purchase date in the UnitsSold table.
+This includes situations where a product didn't have any sales during the specified pricing period.
+
