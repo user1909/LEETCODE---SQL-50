@@ -1,0 +1,15 @@
+# Write your MySQL query statement below
+
+Solution 1 ( Using Aggregate function - MOD() )
+------------------------------------------------
+SELECT * 
+FROM Cinema
+WHERE (MOD(id,2)!=0) AND description !='boring'
+ORDER BY rating DESC;
+
+Solution 2 (Without using Aggregate function)
+------------------------------------------------
+SELECT * 
+FROM Cinema
+WHERE (CASE WHEN id%2!=0 THEN 1 ELSE 0 END) AND description !='boring'
+ORDER BY rating DESC
